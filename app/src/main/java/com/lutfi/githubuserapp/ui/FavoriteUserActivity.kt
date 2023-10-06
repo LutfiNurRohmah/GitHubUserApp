@@ -35,6 +35,6 @@ class FavoriteUserActivity : AppCompatActivity() {
 
     private fun obtainViewModel(activity: AppCompatActivity) : FavoriteUserViewModel {
         val factory = ViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory).get(FavoriteUserViewModel::class.java)
+        return ViewModelProvider(activity, factory)[FavoriteUserViewModel::class.java]
     }
 }

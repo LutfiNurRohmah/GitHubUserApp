@@ -52,7 +52,7 @@ class FavoriteUserAdapter: RecyclerView.Adapter<FavoriteUserAdapter.FavoriteUser
     inner class FavoriteUserViewHolder(private val binding: ItemUsersBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(favoriteUser: FavoriteUser) {
             with(binding) {
-                binding.profileText.text = favoriteUser.username
+                profileText.text = favoriteUser.username
                 Glide.with(itemView.context)
                     .load(favoriteUser.avatarUrl)
                     .into(binding.profileId)

@@ -12,23 +12,14 @@ import com.lutfi.githubuserapp.databinding.ItemUsersBinding
 
 class GitHubUserAdapter : ListAdapter<ItemsItem, GitHubUserAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ItemsItem>() {
-            override fun areItemsTheSame(oldItem: ItemsItem, newItem: ItemsItem): Boolean {
-                return oldItem == newItem
-            }
-            override fun areContentsTheSame(oldItem: ItemsItem, newItem: ItemsItem): Boolean {
-                return oldItem == newItem
-            }
-        }
-    }
-
     class MyViewHolder(private val binding: ItemUsersBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: ItemsItem){
-            binding.profileText.text = user.login
-            Glide.with(itemView.context)
-                .load(user.avatarUrl)
-                .into(binding.profileId)
+            with(binding) {
+                profileText.text = user.login
+                Glide.with(itemView.context)
+                    .load(user.avatarUrl)
+                    .into(profileId)
+            }
         }
     }
 
@@ -47,6 +38,17 @@ class GitHubUserAdapter : ListAdapter<ItemsItem, GitHubUserAdapter.MyViewHolder>
             val intentDetail = Intent(holder.itemView.context, DetailUserActivity::class.java)
             intentDetail.putExtra("user_name", username)
             holder.itemView.context.startActivity(intentDetail)
+        }
+    }
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ItemsItem>() {
+            override fun areItemsTheSame(oldItem: ItemsItem, newItem: ItemsItem): Boolean {
+                return oldItem == newItem
+            }
+            override fun areContentsTheSame(oldItem: ItemsItem, newItem: ItemsItem): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 }

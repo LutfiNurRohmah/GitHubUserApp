@@ -29,14 +29,6 @@ class DetailUserActivity : AppCompatActivity() {
     private var favoriteUser: FavoriteUser = FavoriteUser()
     private var isFavorite: Boolean? = null
 
-    companion object {
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_text_1,
-            R.string.tab_text_2
-        )
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
@@ -86,19 +78,19 @@ class DetailUserActivity : AppCompatActivity() {
             val username = user.login
             val avatar = user.avatarUrl
             favoriteUser.let { favoriteUser ->
-                favoriteUser?.username = username
-                favoriteUser?.avatarUrl = avatar
+                favoriteUser.username = username
+                favoriteUser.avatarUrl = avatar
             }
 
             if (isFavorite == true) {
                 isFavorite = false
-                favoriteUserAddViewModel.delete(favoriteUser as FavoriteUser)
+                favoriteUserAddViewModel.delete(favoriteUser)
                 binding.fabAddFavorite.setImageResource(R.drawable.baseline_favorite_border_24)
                 showToast("Berhasil menghapus dari favorit")
 
             } else {
                 isFavorite = true
-                favoriteUserAddViewModel.insert(favoriteUser as FavoriteUser)
+                favoriteUserAddViewModel.insert(favoriteUser)
                 binding.fabAddFavorite.setImageResource(R.drawable.baseline_favorite_24)
                 showToast("Berhasil menambahkan ke favorit")
             }
@@ -109,24 +101,26 @@ class DetailUserActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
-        }
-    }
+    private fun showLoading(state: Boolean) { binding.progressBar.visibility = if (state) View.VISIBLE else View.GONE }
 
     private fun setDetailUser(user: DetailUserResponse) {
-        binding.tvNama.text = user.name?.toString()
-        binding.tvUsername.text = user.login
-        binding.tvFollowers.text = "${user.followers} Followers"
-        binding.tvFollowing.text = "${user.following} Following"
-        Glide.with(this@DetailUserActivity)
-            .load(user.avatarUrl)
-            .into(binding.profileImg)
-
+        with(binding) {
+            tvNama.text = user.name?.toString()
+            tvUsername.text = user.login
+            tvFollowers.text = resources.getString(R.string.followers, user.followers)
+            tvFollowing.text = resources.getString(R.string.following, user.following)
+            Glide.with(this@DetailUserActivity)
+                .load(user.avatarUrl)
+                .into(profileImg)
+        }
         addFavoriteUser(user)
     }
 
+    companion object {
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_1,
+            R.string.tab_text_2
+        )
+    }
 }
