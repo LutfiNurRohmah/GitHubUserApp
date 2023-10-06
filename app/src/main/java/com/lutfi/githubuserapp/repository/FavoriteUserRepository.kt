@@ -28,8 +28,4 @@ class FavoriteUserRepository(application: Application) {
     fun delete(favoriteUser: FavoriteUser) {
         executorService.execute { mFavoriteUser.delete(favoriteUser) }
     }
-
-    fun update(favoriteUser: FavoriteUser) {
-        executorService.execute { mFavoriteUser.update(favoriteUser) }
-    }
 }
