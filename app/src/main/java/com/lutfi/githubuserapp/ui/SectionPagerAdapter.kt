@@ -8,9 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 class SectionPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
     var username: String = ""
 
-    override fun getItemCount(): Int {
-        return 2
-    }
+    override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
         val fragment = HomeFragment()

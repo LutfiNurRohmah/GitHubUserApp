@@ -6,7 +6,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Update
 
 @Dao
 interface FavoriteUserDao {
@@ -15,9 +14,6 @@ interface FavoriteUserDao {
 
     @Delete
     fun delete(favoriteUser: FavoriteUser)
-
-    @Update
-    fun update(favoriteUser: FavoriteUser)
 
     @Query("SELECT * from FavoriteUser")
     fun getAllFavoriteUsers(): LiveData<List<FavoriteUser>>

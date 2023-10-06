@@ -17,10 +17,5 @@ class FavoriteUserAddViewModel(application: Application) : ViewModel() {
         mFavoriteUserRepository.delete(favoriteUser)
     }
 
-    fun update(favoriteUser: FavoriteUser) {
-        mFavoriteUserRepository.delete(favoriteUser)
-    }
-
     fun getFavoriteUserByUsername(username: String): LiveData<FavoriteUser> = mFavoriteUserRepository.getFavoriteUserByUsername(username)
-
 }

@@ -28,11 +28,6 @@ class DetailUserViewModel: ViewModel() {
     private val _listFollowing = MutableLiveData<List<ItemsItem>>()
     val listFollowing: LiveData<List<ItemsItem>> = _listFollowing
 
-
-    companion object {
-        private const val TAG = "DetailUserViewModel"
-    }
-
     fun getDetail(userName: String?) {
         _isLoading.value = true
         val client = ApiConfig.getApiService().getDetailUser(userName)
@@ -100,5 +95,9 @@ class DetailUserViewModel: ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "DetailUserViewModel"
     }
 }
