@@ -55,7 +55,7 @@ class FavoriteUserAdapter: RecyclerView.Adapter<FavoriteUserAdapter.FavoriteUser
                 profileText.text = favoriteUser.username
                 Glide.with(itemView.context)
                     .load(favoriteUser.avatarUrl)
-                    .into(binding.profileId)
+                    .into(profileId)
             }
         }
     }

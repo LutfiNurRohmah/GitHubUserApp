@@ -18,4 +18,7 @@ data class DetailUserResponse(
 
 	@field:SerializedName("name")
 	val name: Any,
+
+	@field:SerializedName("html_url")
+	val url: String,
 )
