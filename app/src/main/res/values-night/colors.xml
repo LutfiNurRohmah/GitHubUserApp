@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#B0BEC5</color>
+    <color name="colorOnPrimary">#FF000000</color>
+    <!-- Secondary brand color. -->
+    <color name="colorSecondary">#FF5722</color>
+    <color name="colorOnSecondary">#FFFFFFFF</color>
+
+</resources>

@@ -35,8 +35,10 @@ class MainActivity : AppCompatActivity() {
         settingViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                binding.searchBar.menu.findItem(R.id.menu_favorite).setIcon(R.drawable.baseline_favorite_24_night)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                binding.searchBar.menu.findItem(R.id.menu_favorite).setIcon(R.drawable.baseline_favorite_24)
             }
         }
 
