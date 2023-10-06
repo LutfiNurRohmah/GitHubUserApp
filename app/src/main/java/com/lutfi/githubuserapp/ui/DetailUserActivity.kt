@@ -1,5 +1,6 @@
 package com.lutfi.githubuserapp.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -97,6 +98,17 @@ class DetailUserActivity : AppCompatActivity() {
         }
     }
 
+    private fun shareUser(user: DetailUserResponse) {
+        binding.fabShare.setOnClickListener {
+            val sendIntent = Intent()
+            val sendInfo = user.url
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.putExtra(Intent.EXTRA_TEXT, sendInfo)
+            sendIntent.type = "text/plain"
+            startActivity(sendIntent)
+        }
+    }
+
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
@@ -114,6 +126,7 @@ class DetailUserActivity : AppCompatActivity() {
                 .into(profileImg)
         }
         addFavoriteUser(user)
+        shareUser(user)
     }
 
     companion object {
