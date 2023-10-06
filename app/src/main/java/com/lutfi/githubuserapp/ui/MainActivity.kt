@@ -55,11 +55,14 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_setting -> {
+                    val intent = Intent(this, SettingActivity::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false
             }
         }
+
     }
 
     private fun showLoading(isLoading: Boolean) {

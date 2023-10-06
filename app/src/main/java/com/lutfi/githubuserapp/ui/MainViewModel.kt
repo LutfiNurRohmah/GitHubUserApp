@@ -4,17 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
 import com.lutfi.githubuserapp.data.response.GithubUserResponse
 import com.lutfi.githubuserapp.data.response.ItemsItem
 import com.lutfi.githubuserapp.data.retrofit.ApiConfig
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel(private val pref: SettingPreferences): ViewModel() {
+class MainViewModel(): ViewModel() {
 
     private val _listUser = MutableLiveData<List<ItemsItem>>()
     val listUser: LiveData<List<ItemsItem>> = _listUser
@@ -71,17 +68,6 @@ class MainViewModel(private val pref: SettingPreferences): ViewModel() {
             }
         })
     }
-
-    fun getThemeSettings(): LiveData<Boolean> {
-        return pref.getThemeSetting().asLiveData()
-    }
-
-    fun saveThemeSetting(isDarkModeActive: Boolean) {
-        viewModelScope.launch {
-            pref.saveThemeSetting(isDarkModeActive)
-        }
-    }
-
     companion object {
         private const val TAG = "MainViewModel"
         private const val USER_NAME = "lutfi"
